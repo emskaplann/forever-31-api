@@ -1,0 +1,39 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  brand: MyString
+  category_name: MyString
+  coming_soon: false
+  description: MyString
+  description_of_deal: MyString
+  display_name: MyString
+  free_shipping: false
+  image_extension: MyString
+  student_deal: false
+  item_code: MyString
+  on_sale: false
+  orig_product_id: MyString
+  product_share_link: MyString
+  product_size_chart: MyString
+  list_price: MyString
+  shipping_fee: MyString
+  belongs_to: 
+
+two:
+  brand: MyString
+  category_name: MyString
+  coming_soon: false
+  description: MyString
+  description_of_deal: MyString
+  display_name: MyString
+  free_shipping: false
+  image_extension: MyString
+  student_deal: false
+  item_code: MyString
+  on_sale: false
+  orig_product_id: MyString
+  product_share_link: MyString
+  product_size_chart: MyString
+  list_price: MyString
+  shipping_fee: MyString
+  belongs_to: 

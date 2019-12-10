@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  belongs_to: 
+  front_url: MyString
+  side_url: MyString
+  back_url: MyString
+  full_url: MyString
+  detail_url: MyString
+
+two:
+  belongs_to: 
+  front_url: MyString
+  side_url: MyString
+  back_url: MyString
+  full_url: MyString
+  detail_url: MyString
