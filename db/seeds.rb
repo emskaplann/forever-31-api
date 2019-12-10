@@ -8,7 +8,7 @@ require 'json'
 # Product.delete_all
 # ProductImage.delete_all
 
-url = URI("https://apidojo-forever21-v1.p.rapidapi.com/products/list?maxprice=250&sort=popular&category=women-new-arrivals&page=5&pagesize=45")
+url = URI("https://apidojo-forever21-v1.p.rapidapi.com/products/list?maxprice=250&sort=popular&category=women-new-arrivals&page=10&pagesize=45")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -29,9 +29,8 @@ parsed_response = JSON.parse(response.body)
 
 # ChildCategory.delete_all
 # Category.delete_all
-# women = Category.create(name: "Adult Women", gender: "women")
-# w_new_arrivals = ChildCategory.create(category_id: women.id, name: "New Arrivals", gender: "women")
-
+# men = Category.create(name: "Adult Men", gender: "men")
+# m_new_arrivals = ChildCategory.create(category_id: Category.all.last.id, name: "Sale", gender: "men")
 parsed_response["CatalogProducts"].each do |product|
   product1 = Product.create(
     brand: product["Brand"],
@@ -78,17 +77,18 @@ parsed_response["CatalogProducts"].each do |product|
         product_id: product1.id
       )
     # Creating Images For Variants
+    new_extension = "#{variant["ImageFileName"][0..8]}#{variant1.color_id}.jpg"
       VariantImage.create(
-        front_url: "https://www.forever21.com/images/1_front_750/#{variant["ImageFileName"]}",
-        side_url: "https://www.forever21.com/images/2_side_750/#{variant["ImageFileName"]}",
-        back_url: "https://www.forever21.com/images/3_back_750/#{variant["ImageFileName"]}",
-        full_url: "https://www.forever21.com/images/4_full_750/#{variant["ImageFileName"]}",
-        detail_url: "https://www.forever21.com/images/5_detail_750/#{variant["ImageFileName"]}",
-        small_front_url: "https://www.forever21.com/images/1_front_58/#{variant["ImageFileName"]}",
-        small_side_url: "https://www.forever21.com/images/2_side_58/#{variant["ImageFileName"]}",
-        small_back_url: "https://www.forever21.com/images/3_back_58/#{variant["ImageFileName"]}",
-        small_full_url: "https://www.forever21.com/images/4_full_58/#{variant["ImageFileName"]}",
-        small_detail_url: "https://www.forever21.com/images/5_detail_58/#{variant["ImageFileName"]}",
+        front_url: "https://www.forever21.com/images/1_front_750/#{new_extension}",
+        side_url: "https://www.forever21.com/images/2_side_750/#{new_extension}",
+        back_url: "https://www.forever21.com/images/3_back_750/#{new_extension}",
+        full_url: "https://www.forever21.com/images/4_full_750/#{new_extension}",
+        detail_url: "https://www.forever21.com/images/5_detail_750/#{new_extension}",
+        small_front_url: "https://www.forever21.com/images/1_front_58/#{new_extension}",
+        small_side_url: "https://www.forever21.com/images/2_side_58/#{new_extension}",
+        small_back_url: "https://www.forever21.com/images/3_back_58/#{new_extension}",
+        small_full_url: "https://www.forever21.com/images/4_full_58/#{new_extension}",
+        small_detail_url: "https://www.forever21.com/images/5_detail_58/#{new_extension}",
         variant_id: variant1.id
       )
     end
