@@ -47,3 +47,4 @@ gem "dotenv-rails"
 gem 'unirest'
 gem 'openssl'
 gem 'json'
+gem 'ibm_watson'
