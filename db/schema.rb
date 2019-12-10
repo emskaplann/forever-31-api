@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_033257) do
+ActiveRecord::Schema.define(version: 2019_12_10_165825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,13 @@ ActiveRecord::Schema.define(version: 2019_12_10_033257) do
     t.index ["child_category_id"], name: "index_products_on_child_category_id"
   end
 
+  create_table "products_users", id: false, force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["product_id"], name: "index_products_users_on_product_id"
+    t.index ["user_id"], name: "index_products_users_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -127,6 +134,8 @@ ActiveRecord::Schema.define(version: 2019_12_10_033257) do
   add_foreign_key "orders_products", "products"
   add_foreign_key "product_images", "products"
   add_foreign_key "products", "child_categories"
+  add_foreign_key "products_users", "products"
+  add_foreign_key "products_users", "users"
   add_foreign_key "variant_images", "variants"
   add_foreign_key "variants", "products"
 end
