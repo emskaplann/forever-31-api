@@ -1,5 +1,28 @@
+require 'json'
+require 'ibm_watson/authenticators'
+require 'ibm_watson/assistant_v2'
+include IBMWatson
+
 class ApplicationController < ActionController::API
+
+  def initialize
+    super()
+    @authenticator = Authenticators::IamAuthenticator.new(
+      apikey: ENV["ASSISTANT_APIKEY"]
+    )
+
+    @assistant = AssistantV2.new(
+      version: "2019-02-28",
+      authenticator: @authenticator
+    )
+
+    @assistant.service_url = "https://gateway.watsonplatform.net/assistant/api"
+  end
+
+
   private
+
+  # JWT TOKEN METHODS
     def token(user_id)
       payload = { user_id: user_id }
       JWT.encode(payload, hmac_secret, 'HS256')
