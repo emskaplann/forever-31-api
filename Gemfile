@@ -42,8 +42,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Not default
 gem 'active_model_serializers'
-gem "dotenv-rails", groups: [:development, :test]
 gem "jwt", "~> 2.2"
+gem "dotenv-rails"
 gem 'unirest'
 gem 'openssl'
 gem 'json'
