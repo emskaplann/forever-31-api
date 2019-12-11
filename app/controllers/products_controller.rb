@@ -3,7 +3,12 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product.all
+    if params["limit"]
+      limit_number = params["limit"].to_i
+      @products = Product.all[0..limit_number]
+    else
+      @products = Product.all[0..49]
+    end
 
     render json: @products
   end
