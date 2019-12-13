@@ -17,13 +17,13 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    byebug
+    # byebug
     @user = User.new(user_params)
 
     if @user.save
       render json: { token: token(@user.id), user_id: @user.id, username: @user.username }
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: { errors: @user.errors }, status: :unprocessable_entity
     end
   end
 
