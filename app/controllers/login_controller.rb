@@ -1,9 +1,9 @@
 class LoginController < ApplicationController
-  
+
   def create
-   user = User.find_by("lower(username) = ?", user_params[:username].downcase)
-   if user && user.authenticate(user_params[:password])
-     render json: { token: token(user.id), user_id: user.id }
+   @user = User.find_by("lower(username) = ?", user_params[:username].downcase)
+   if @user && @user.authenticate(user_params[:password])
+     render json: { token: token(@user.id), user_id: @user.id, username: @user.username }
    else
      render json: { errors: [ "Sorry, incorrect username or password" ] }, status: :unprocessable_entity
    end
