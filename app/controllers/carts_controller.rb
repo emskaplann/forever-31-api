@@ -5,7 +5,7 @@ class CartsController < ApplicationController
   # GET /carts
   def index
     @carts = Cart.all
-
+    byebug
     render json: @carts
   end
 
