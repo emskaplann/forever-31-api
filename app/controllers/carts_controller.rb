@@ -1,18 +1,20 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :update, :destroy]
+  before_action :set_cart, only: [:index, :show, :update, :destroy]
   before_action :require_login
 
   # GET /carts
-  # def index
-  #   @carts = ProductsUser.all
-  #   byebug
-  #   render json: @carts
-  # end
+  def index
+    if @cart == nil
+      render json: { error: "this user doesn't have any cart" }
+    else
+      render json: @cart
+    end
+  end
 
   # GET /carts/1
-  def show
-    render json: @cart
-  end
+  # def show
+  #   render json: @cart
+  # end
 
   # POST /carts
   def create
@@ -42,7 +44,7 @@ class CartsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = ProductsUser.find_by(user_id: params[:id])
+      @cart = ProductsUser.find_by(user_id: current_user_id)
     end
 
     # Only allow a trusted parameter "white list" through.
