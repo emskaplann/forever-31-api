@@ -4,8 +4,8 @@ class CartsController < ApplicationController
 
   # GET /carts
   def index
-    if @cart == nil
-      render json: { error: "this user doesn't have any cart" }
+    if @cart == []
+      render json: { error: "this user doesn't have any product in a cart" }
     else
       render json: @cart
     end
@@ -19,9 +19,9 @@ class CartsController < ApplicationController
   # POST /carts
   def create
     @cart = ProductsUser.new(cart_params)
-
+    @product = Product.find(@cart.product_id)
     if @cart.save
-      render json: @cart, status: :created, location: @cart
+      render json: @product, status: :created
     else
       render json: @cart.errors, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class CartsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = ProductsUser.find_by(user_id: current_user_id)
+      @cart = ProductsUser.where(user_id: current_user_id)
     end
 
     # Only allow a trusted parameter "white list" through.
