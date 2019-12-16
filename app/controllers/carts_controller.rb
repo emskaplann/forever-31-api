@@ -18,7 +18,7 @@ class CartsController < ApplicationController
 
   # POST /carts
   def create
-    @cart = ProductsUser.new(cart_params)
+    @cart = ProductsUser.new(product_id: cart_params.values[0], user_id: current_user_id)
     @product = Product.find(@cart.product_id)
     if @cart.save
       render json: @product, status: :created
@@ -29,7 +29,7 @@ class CartsController < ApplicationController
 
   # PATCH/PUT /carts/1
   def update
-    if @cart.update(cart_params)
+    if @cart.update(product_id: cart_params.values[0], user_id: current_user_id)
       render json: @cart
     else
       render json: @cart.errors, status: :unprocessable_entity
@@ -49,6 +49,6 @@ class CartsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def cart_params
-      params.require(:cart).permit(:user_id, :product_id)
+      params.require(:cart).permit(:product_id)
     end
 end
