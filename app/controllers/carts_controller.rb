@@ -3,11 +3,11 @@ class CartsController < ApplicationController
   before_action :require_login
 
   # GET /carts
-  def index
-    @carts = Cart.all
-    byebug
-    render json: @carts
-  end
+  # def index
+  #   @carts = ProductsUser.all
+  #   byebug
+  #   render json: @carts
+  # end
 
   # GET /carts/1
   def show
@@ -16,7 +16,7 @@ class CartsController < ApplicationController
 
   # POST /carts
   def create
-    @cart = Cart.new(cart_params)
+    @cart = ProductsUser.new(cart_params)
 
     if @cart.save
       render json: @cart, status: :created, location: @cart
@@ -42,11 +42,11 @@ class CartsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
-      @cart = Cart.find(params[:id])
+      @cart = ProductsUser.find_by(user_id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def cart_params
-      params.require(:cart).permit(:belongs_to, :belongs_to)
+      params.require(:cart).permit(:user_id, :product_id)
     end
 end
