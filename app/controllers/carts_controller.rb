@@ -18,10 +18,14 @@ class CartsController < ApplicationController
 
   # POST /carts
   def create
-    @cart = ProductsUser.new(product_id: cart_params.values[0], user_id: current_user_id)
+    @cart = ProductsUser.new(product_id: cart_params.values[0], user_id: current_user_id, quantity: 1)
     @product = Product.find(@cart.product_id)
     if @cart.save
       render json: @product, status: :created
+    elsif @cart.uniq_product_and_user
+      @existed_cart = ProductsUser.find_by(user_id: current_user_id, product_id: cart_params.values[0])
+      @existed_cart.update(quantity: @existed_cart.quantity + 1)
+      render json: @existed_cart, status: :updated
     else
       render json: @cart.errors, status: :unprocessable_entity
     end
