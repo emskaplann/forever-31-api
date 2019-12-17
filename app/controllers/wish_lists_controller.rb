@@ -4,7 +4,7 @@ class WishListsController < ApplicationController
   # GET /wish_lists
   def index
     if @wish_list == []
-      render json: { error: "this user doesn't have any product in a wishlist" }
+      render json: []
     else
       render json: @wish_list
     end
@@ -32,7 +32,10 @@ class WishListsController < ApplicationController
 
   # DELETE /wish_lists/1
   def destroy
-    @wish_list.destroy
+    @wishlist = WishList.find_by(user_id: current_user_id, product_id: params[:id])
+    @wishlist.destroy
+    @new_wishlist = WishList.where(user_id: current_user_id)
+    render json: @new_wishlist
   end
 
   private
