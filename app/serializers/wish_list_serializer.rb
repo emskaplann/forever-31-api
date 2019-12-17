@@ -1,3 +1,8 @@
 class WishListSerializer < ActiveModel::Serializer
-  attributes :product
+  attributes :product, :product_images
+
+  def product_images
+    self.object.product.product_images
+  end
+
 end

@@ -1,7 +1,7 @@
 class WishList < ApplicationRecord
   belongs_to :user
   belongs_to :product
-  validate :uniq_product_and_user
+  validate :uniq_product_and_user, on: :create
 
   # checking if wishlist is already created
   def uniq_product_and_user
