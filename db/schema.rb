@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_221505) do
   create_table "products_users", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "user_id", null: false
+    t.integer "quantity"
     t.index ["product_id"], name: "index_products_users_on_product_id"
     t.index ["user_id"], name: "index_products_users_on_user_id"
   end
