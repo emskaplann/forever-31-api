@@ -30,11 +30,10 @@ class CartsController < ApplicationController
 
   # PATCH/PUT /carts/1
   def update
-    byebug
-    if @cart.update(quantity: @cart[0].quantity + 1)
+    if @cart[0].update(quantity: @cart[0].quantity + 1)
       render json: @cart
     else
-      render json: @cart.errors, status: :unprocessable_entity
+      render json: {error: 'not updated'}, status: :unprocessable_entity
     end
   end
 
