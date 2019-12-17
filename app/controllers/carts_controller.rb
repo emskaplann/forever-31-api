@@ -1,11 +1,11 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:index, :show, :update, :destroy]
+  before_action :set_cart, only: [:index, :show, :update]
   before_action :require_login
 
   # GET /carts
   def index
     if @cart == []
-      render json: { error: "this user doesn't have any product in a cart" }
+      render json: []
     else
       render json: @cart
     end
@@ -38,7 +38,10 @@ class CartsController < ApplicationController
 
   # DELETE /carts/1
   def destroy
+    @cart = ProductsUser.find_by(user_id: current_user_id, product_id: params[:id])
     @cart.destroy
+    @new_cart = ProductsUser.where(user_id: current_user_id)
+    render json: @new_cart
   end
 
   private
