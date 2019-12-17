@@ -30,10 +30,12 @@ class CartsController < ApplicationController
 
   # PATCH/PUT /carts/1
   def update
-    if @cart[0].update(quantity: @cart[0].quantity + 1)
-      render json: @cart
+    if params[:asd] == 'minus'
+      @cart[0].update(quantity: @cart[0].quantity - 1)
+      render json: @cart, status: 200
     else
-      render json: {error: 'not updated'}, status: :unprocessable_entity
+      @cart[0].update(quantity: @cart[0].quantity + 1)
+      render json: @cart, status: 200
     end
   end
 
