@@ -5,7 +5,7 @@ class WishList < ApplicationRecord
 
   # checking if wishlist is already created
   def uniq_product_and_user
-      @all_couples = ProductsUser.all.map{ |pu| pu.user_id + pu.product_id }
+      @all_couples = WishList.all.map{ |pu| pu.user_id + pu.product_id }
       if @all_couples.include?(self.user_id + self.product_id)
         errors.add(:product_id, "should be unique")
       end
