@@ -54,7 +54,7 @@ class CartsController < ApplicationController
     end
 
     def set_cart_for_update
-      @cart = ProductsUser.where(product_id: params[:id])
+      @cart = ProductsUser.where(user_id: current_user_id, product_id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
