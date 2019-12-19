@@ -5,6 +5,10 @@ class ChargeController < ApplicationController
   def charge
     # byebug
     token = params[:token]
+    amount = params[:amount]
+    email = params[:email]
+    name = params[:name]
+
     response = Stripe::Charge.create({
       amount: 999,
       currency: 'usd',
