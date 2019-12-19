@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:show, :update, :destroy]
+  before_action :set_address, only: [:show, :destroy]
 
   # GET /addresses
   def index
@@ -15,7 +15,6 @@ class AddressesController < ApplicationController
 
   # POST /addresses
   def create
-    byebug
     @address = Address.new(address_params)
 
     if @address.save
@@ -27,6 +26,7 @@ class AddressesController < ApplicationController
 
   # PATCH/PUT /addresses/1
   def update
+    @address = Address.find_by(user_id: params[:id])
     if @address.update(address_params)
       render json: @address
     else
