@@ -23,7 +23,6 @@ class ChargeController < ApplicationController
       description: items,
       source: token
     })
-    byebug
   end
 
 end
