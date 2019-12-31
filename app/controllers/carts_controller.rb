@@ -19,7 +19,7 @@ class CartsController < ApplicationController
 
   # POST /carts
   def create
-    @cart = ProductsUser.new(product_id: cart_params.values[0], user_id: current_user_id, quantity: 1)
+    @cart = ProductsUser.new(product_id: cart_params.values[0], user_id: current_user_id, quantity: 1, size: "M")
     @product = Product.find(@cart.product_id)
     if @cart.save
       render json: {product: @cart.product, product_images: @cart.product.product_images, quantity: @cart.quantity}, status: :created
