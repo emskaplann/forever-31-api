@@ -30,8 +30,12 @@ class CartsController < ApplicationController
 
   # PATCH/PUT /carts/1
   def update
+    # byebug
     if params[:asd] == 'minus' || params[:asd] == 'papi'
       @cart[0].update(quantity: @cart[0].quantity - 1)
+      render json: @cart, status: 200
+    elsif params[:update_size] == 'true'
+      @cart[0].update(size: params[:size])
       render json: @cart, status: 200
     else
       @cart[0].update(quantity: @cart[0].quantity + 1)
