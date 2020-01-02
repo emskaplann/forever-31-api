@@ -3,7 +3,11 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    if params["limit"]
+    if params["limit"] && params["start"]
+      start_number = params["start"].to_i + 1
+      limit_number = params["limit"].to_i
+      @products = Product.all[start_number..limit_number]
+    elsif params["limit"]
       limit_number = params["limit"].to_i
       @products = Product.all[0..limit_number]
     else
