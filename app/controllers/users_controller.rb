@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   def create
     # byebug
     @user = User.new(user_params)
+    Address.new(user_id: @user.id, line_1: "81 Prospect St", line_2: "Brooklyn, NY 11201")
 
     if @user.save
       render json: { token: token(@user.id), user_id: @user.id, username: @user.username }
