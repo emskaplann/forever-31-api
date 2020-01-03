@@ -8,7 +8,7 @@ require 'json'
 # Product.delete_all
 # ProductImage.delete_all
 
-url = URI("https://apidojo-forever21-v1.p.rapidapi.com/products/list?maxprice=250&sort=popular&category=women-new-arrivals&page=10&pagesize=45")
+url = URI("https://apidojo-forever21-v1.p.rapidapi.com/products/list?maxprice=250&sort=popular&category=women-new-arrivals&page=1&pagesize=45")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -29,8 +29,8 @@ parsed_response = JSON.parse(response.body)
 
 # ChildCategory.delete_all
 # Category.delete_all
-# men = Category.create(name: "Adult Men", gender: "men")
-# m_new_arrivals = ChildCategory.create(category_id: Category.all.last.id, name: "Sale", gender: "men")
+women = Category.create(name: "Women New Arrivals", gender: "women")
+w_new_arrivals = ChildCategory.create(category_id: Category.all.last.id, name: "new-arrivals", gender: "women")
 parsed_response["CatalogProducts"].each do |product|
   product1 = Product.create(
     brand: product["Brand"],
@@ -49,7 +49,7 @@ parsed_response["CatalogProducts"].each do |product|
     product_size_chart: product["ProductSizeChart"],
     list_price: "$#{product["ListPrice"].to_s}",
     shipping_fee: "$2.99",
-    child_category_id: 13
+    child_category_id: w_new_arrivals.id
   )
   # Creating Image For Product
   #  example image link => https://www.forever21.com/images/4_full_750/00375850-03.jpg
