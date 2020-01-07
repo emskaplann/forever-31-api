@@ -1,24 +1,43 @@
-# README
+# Forever 31
+This app was made by me and the main purpose was combining all my knowledge about React with Redux. Besides that I implemented Stripe and IBM Watson for several tasks. Thank you for visiting my project!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Checkout the frontend repo! [F31 Frontend](https://github.com/emskaplann/forever-31-frontend).
+## Languages and Frameworks
+These Languages and Frameworks are for Web App,
+#### Front-End
+* [React.js](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Semantic UI React](https://react.semantic-ui.com/)
+* [React-Bootstrap](https://react-bootstrap.github.io/)
 
-Things you may want to cover:
+#### Back-End
+* [Ruby](https://www.ruby-lang.org/tr/)
+* [Ruby on Rails](https://rubyonrails.org/)
+* [JWT Authentication](https://jwt.io/)
+* [IBM Watson](https://www.ibm.com/watson)
+* [Stripe](https://stripe.com/)
 
-* Ruby version
+#### Link to Related Repos
+[F31 Frontend]https://github.com/emskaplann/forever-31-frontend)
 
-* System dependencies
+## Installation
+```bash
+ bundle install
+ rails db:create
+ rails db:migrate
+ rails s
+```
+> Make sure you are in the Project Path before writing the commands.
 
-* Configuration
+## Fast ScreenPlay for App
+![](https://media.giphy.com/media/LSvWVRbZmfvjD3Cwdf/giphy.gif)
 
-* Database creation
+## Domain Model for Project
+![](https://i.ibb.co/kgr12JL/f31-domain-model.png)
+#### Note:
+I couldn't use every model you see in the diagram due to lack of resources :(
 
-* Database initialization
+## Contributing
+Pull requests are more than welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+> This project doesn't have any test. For any changes on project do not worry about tests.
