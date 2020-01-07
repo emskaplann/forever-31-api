@@ -1,7 +1,9 @@
 class LoginController < ApplicationController
 
   def create
-   @user = User.find_by(username: user_params[:username].downcase)
+   @user = User.find_by(username: user_params[:username])
+   puts user_params[:username]
+   puts user_params
    if @user && @user.authenticate(user_params[:password])
      render json: { token: token(@user.id), user_id: @user.id, username: @user.username, address: @user.address }
    else
