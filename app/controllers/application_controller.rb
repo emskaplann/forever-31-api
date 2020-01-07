@@ -2,6 +2,7 @@
 # require 'ibm_watson/authenticators'
 # require 'ibm_watson/assistant_v2'
 # include IBMWatson
+require "jwt"
 
 class ApplicationController < ActionController::API
 
