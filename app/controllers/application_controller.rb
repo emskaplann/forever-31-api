@@ -1,25 +1,4 @@
-# require 'json'
-# require 'ibm_watson/authenticators'
-# require 'ibm_watson/assistant_v2'
-# include IBMWatson
-require "jwt"
-
 class ApplicationController < ActionController::API
-
-  # def initialize
-  #   super()
-  #   @authenticator = Authenticators::IamAuthenticator.new(
-  #     apikey: ENV["ASSISTANT_APIKEY"]
-  #   )
-  #
-  #   @assistant = AssistantV2.new(
-  #     version: "2019-02-28",
-  #     authenticator: @authenticator
-  #   )
-  #
-  #   @assistant.service_url = "https://gateway.watsonplatform.net/assistant/api"
-  # end
-
 
   private
 
