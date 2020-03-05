@@ -21,6 +21,8 @@ These Languages and Frameworks are for Web App,
 [F31 Frontend]https://github.com/emskaplann/forever-31-frontend)
 
 ## Installation
+After you succesfully launched the server please check the endpoints by visiting "http://localhost:3000/rails/info/routes".
+
 ```bash
  bundle install
  rails db:create
